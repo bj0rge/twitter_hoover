@@ -30,4 +30,4 @@ node_modules
 constants.js
 
 # Log file
-log.js
+log.json
