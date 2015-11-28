@@ -11,10 +11,13 @@ var T = new Twit({
 })
 
 
-var maxCount = 100;
+var maxCount = 100; // Max value allowed by Twitter API is 100
 var query = '#DPDA';
 
-T.get('search/tweets', { q: query, count: maxCount }, function(err, data, response) {
+
+
+
+function saveTweets(data) {
     var tweets = data.statuses;
     var firstId = tweets[maxCount - 1].id; // because tweets start with the most recent
     var outputFilename = './tweets/tweets_'+ firstId +'.json';
@@ -24,4 +27,8 @@ T.get('search/tweets', { q: query, count: maxCount }, function(err, data, respon
         if(err) console.log(err);
         else console.log("json saved to " + outputFilename);
     });
+}
+
+T.get('search/tweets', { q: query, count: maxCount }, function(err, data, response) {
+    saveTweets(data);
 })
