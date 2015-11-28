@@ -1,5 +1,6 @@
 var Twit = require('twit')
 var Const = require('./constants');
+var fs = require('fs');
 
 
 var T = new Twit({
@@ -10,6 +11,17 @@ var T = new Twit({
 })
 
 
-T.get('search/tweets', { q: '#DPDA', count: 100  }, function(err, data, response) {
-    console.log(data);
+var maxCount = 100;
+var query = '#DPDA';
+
+T.get('search/tweets', { q: query, count: maxCount }, function(err, data, response) {
+    var tweets = data.statuses;
+    var firstId = tweets[maxCount - 1].id; // because tweets start with the most recent
+    var outputFilename = './tweets/tweets_'+ firstId +'.json';
+
+
+    fs.writeFile(outputFilename, JSON.stringify(tweets, null, 4), function(err) {
+        if(err) console.log(err);
+        else console.log("json saved to " + outputFilename);
+    });
 })

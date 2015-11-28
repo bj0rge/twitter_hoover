@@ -26,8 +26,11 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
+# Personal testing file
+test.js
+
 # Passwords
 constants.js
 
-# Log file
-log.json
+# Tweets file
+tweets/*

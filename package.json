@@ -2,6 +2,7 @@
   "name": "twitter_hoover",
   "version": "0.1.0",
   "dependencies": {
+    "lodash": "^3.10.1",
     "request": "^2.58.0",
     "twit": "^1.1.20"
   },
