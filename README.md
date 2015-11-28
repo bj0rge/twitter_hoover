@@ -10,7 +10,7 @@ Well, for now, the soft isn't fully functional. It's still in development. But *
 So....
 
 ### What does it do for now?
-For now, you can store only one search (since the Twitter API allows 100 results max by search, you can grab only... yup, you're god damn right, 100 tweets). But you will be able soon to store a lot of more stuff. Yeepee.
+For now, you can store your search on many files (since the Twitter API allows 100 results max by search, you can grab only... yup, you're god damn right, 100 tweets by file). But you will be able soon to store a lot of more stuff in less files (if I'm courageous enough). Yeepee.
 
 ### What do I have to do?
 After the installation (please see **Installation** for more informations about... the installation), you'll have to set your search parameters to the wanted ones.
@@ -24,6 +24,14 @@ var query = 'Yolo'; // In case you want to search tweets containing 'yolo', ever
 
 Then, you can run the file with `node twitter_hoover.js`. All the tweets will be written in a file at `./tweets/tweets_123456789.json` or whatever the number will be.
 
+#### BE CAREFUL!
+Don't ever change this to a smaller value:
+```javascript
+setInterval (function() {
+    // ...
+}, (5*1000));
+```
+If you don't want Twitter to ban your user account, one request every 5 seconds is the highest value you can have.
 
 # Installation
 
