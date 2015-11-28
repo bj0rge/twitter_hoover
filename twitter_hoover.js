@@ -26,7 +26,8 @@ var query = '#DPDA';
  */
 function saveTweets(data) {
     var tweets = data.statuses;
-    var firstId = tweets[maxCount - 1].id; // because tweets start with the most recent
+    var nbTweets = tweets.length;
+    var firstId = tweets[nbTweets - 1].id; // because tweets start with the most recent
     var outputFilename = './tweets/tweets_'+ firstId +'.json';
 
     // Writing formated object in a file
@@ -40,7 +41,8 @@ function saveTweets(data) {
 
 
 // Starting w/ firstId at 0 in order to do the first search
-firstId = 0;
+//firstId = 0;
+firstId = 669986272283373600;
 nbTweets = 0;
 
 
@@ -51,15 +53,15 @@ do {
     setInterval (function() {
         if (firstId == 0) {
             T.get('search/tweets', { q: query, count: maxCount }, function(err, data, response) {
-                firstId = saveTweets(data);
                 nbTweets = data.statuses.length;
+                firstId = saveTweets(data.statuses);
                 if (nbTweets != maxCount) console.log("All tweets recorded!");
             });
         }
         else {
             T.get('search/tweets', { q: query, count: maxCount, max_id: firstId }, function(err, data, response) {
-                firstId = saveTweets(data);
                 nbTweets = data.statuses.length;
+                firstId = saveTweets(data);
                 if (nbTweets != maxCount) console.log("All tweets recorded!");
             });
         }
