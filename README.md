@@ -26,7 +26,13 @@ var query = 'Yolo'; // In case you want to search tweets containing 'yolo', ever
 
 Then, you can run the file with `node twitter_hoover.js`. All the tweets will be written in a file at `./tweets/tweets_123456789.json` or whatever the number will be.
 
-After that, if you want to concatenate all the tweets, you can run `node group_tweets.js`, but it only saves the result in a JSON file for now, so I'm not convinced of the interest. Maybe that's because **the soft isn't fully functionnable!** (but don't worry, it will be fixed soon, for now I'll just gonna play *Fallout*, the first one, GoG rulz).
+After that, if you want to concatenate all the tweets into a single *csv* file, you can run `node group_tweets.js`. If you want the raw JSON file, you can edit `group_tweets.js` here:
+
+```javascript
+var exportType = 'csv'; // You can replace csv by json if you want
+```
+
+Don't worry, I'll maybe allow more formats, but for now I'll just gonna play *Fallout* (the first one, GoG rulz).
 
 #### BE CAREFUL!
 Don't ever change this to a smaller value:

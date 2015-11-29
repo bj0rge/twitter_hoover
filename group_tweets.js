@@ -2,6 +2,13 @@ var Twit = require('twit')
 var Const = require('./constants');
 var fs = require('fs');
 
+/* ##########
+ * The values you have to edit
+ * ##########
+ */
+var exportType = 'csv';
+
+
 /*
  * Compares two strings to know if it starts by a given prefix
  * @params      string      str     wanted string to compare
@@ -38,10 +45,30 @@ files.forEach(function(fileName){
 
 console.log("I got " + tweets.length + " tweets, wow!");
 
-console.log("Writing the file, it may takes a few minutes if there are many tweets.")
-var outputFilename = dirName + '/grouped_tweets.json';
+console.log("Writing the file, it may takes a few minutes if there are many tweets.");
+
+
+var text;
+var outputFilename;
+
+if (exportType == 'csv') {
+    outputFilename = dirName + '/grouped_tweets.csv';
+    text = "Created at;Name;Username;Text";
+
+    tweets.forEach(function(tweet){
+         text += "\n" + tweet.created_at
+            + ";" + tweet.user.name
+            + ";@" + tweet.user.screen_name
+            + ";" + tweet.text;
+    });
+}
+else {
+    outputFilename = dirName + '/grouped_tweets.json';
+    text = JSON.stringify(tweets, null, 4);
+}
+
 // Writing formated object in a file
-fs.writeFile(outputFilename, JSON.stringify(tweets, null, 4), function(err) {
+fs.writeFile(outputFilename, text, function(err) {
     if(err) console.log(err);
-    else console.log("json saved to " + outputFilename);
+    else console.log("file saved to " + outputFilename);
 });
