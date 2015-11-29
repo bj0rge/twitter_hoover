@@ -12,6 +12,8 @@ So....
 ### What does it do for now?
 For now, you can store your search on many files (since the Twitter API allows 100 results max by search, you can grab only... yup, you're god damn right, 100 tweets by file). But you will be able soon to store a lot of more stuff in less files (if I'm courageous enough). Yeepee.
 
+Well, in fact maybe not. But I just added `group_tweets.js` that keeps all files and concatenate tweets in one var. For now.
+
 ### What do I have to do?
 After the installation (please see **Installation** for more informations about... the installation), you'll have to set your search parameters to the wanted ones.
 
@@ -23,6 +25,8 @@ var query = 'Yolo'; // In case you want to search tweets containing 'yolo', ever
 ```
 
 Then, you can run the file with `node twitter_hoover.js`. All the tweets will be written in a file at `./tweets/tweets_123456789.json` or whatever the number will be.
+
+After that, if you want to concatenate all the tweets, you can run `node group_tweets.js`, but it doesn't save the result anywhere so, I'm not convinced of the interest. Maybe that's because **the soft isn't full functionnable!** (but don't worry, it will be fixed soon, for now I'll just gonna play *Fallout*, the first one, GoG rulz).
 
 #### BE CAREFUL!
 Don't ever change this to a smaller value:
