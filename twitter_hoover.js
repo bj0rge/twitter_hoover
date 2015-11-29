@@ -41,8 +41,7 @@ function saveTweets(data) {
 
 
 // Starting w/ firstId at 0 in order to do the first search
-//firstId = 0;
-firstId = 669986272283373600;
+firstId = 0;
 nbTweets = 0;
 
 
