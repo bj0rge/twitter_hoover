@@ -2,6 +2,7 @@ var Twit = require('twit')
 var Const = require('./constants');
 var fs = require('fs');
 
+
 /* ##########
  * The values you have to edit
  * ##########
@@ -18,6 +19,17 @@ var exportType = 'csv';
 function stringStartsWith (str, prefix) {
     return str.slice(0, prefix.length) == prefix;
 }
+
+
+/*
+ * Encode a given string into a wanted format, used for parsing into a csv file
+ * @params  string  str     String to convert
+ * @return  string          Formated string
+ */
+function strFormat(str) {
+    return '"' + str.replace(/\n/g, ' ').replace(/"/g, '""') + '"';
+}
+
 
 
 // All the files are in this directory
@@ -53,13 +65,13 @@ var outputFilename;
 
 if (exportType == 'csv') {
     outputFilename = dirName + '/grouped_tweets.csv';
-    text = "Created at;Name;Username;Text";
+    text = "\ufeffCreated at;Name;Username;Text";
 
     tweets.forEach(function(tweet){
-         text += "\n" + tweet.created_at
-            + ";" + tweet.user.name
-            + ";@" + tweet.user.screen_name
-            + ";" + tweet.text;
+         text += "\n" + strFormat(tweet.created_at)
+            + ";" + strFormat(tweet.user.name)
+            + ";" + strFormat('@' + tweet.user.screen_name)
+            + ";" + strFormat(tweet.text);
     });
 }
 else {
