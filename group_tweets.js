@@ -68,7 +68,7 @@ if (exportType == 'csv') {
     text = "\ufeffCreated at;Name;Username;Text";
 
     tweets.forEach(function(tweet){
-         text += "\n" + strFormat(tweet.created_at)
+         text += "\n" + strFormat(tweet.created_at.substr(4))
             + ";" + strFormat(tweet.user.name)
             + ";" + strFormat('@' + tweet.user.screen_name)
             + ";" + strFormat(tweet.text);
